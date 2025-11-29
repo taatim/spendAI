@@ -1,0 +1,1 @@
+ /Users/taatimannem/Documents/AICode/spendAI/.dart_tool/flutter_build/f605dcf74c19ab377c6f94d7d908ec22/dart_build_result.json: 

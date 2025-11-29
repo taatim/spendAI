@@ -1,5 +1,47 @@
 package com.example.spendai
 
-import io.flutter.embedding.android.FlutterActivity
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.spendai.ui.DashboardScreen
+import com.example.spendai.ui.LandingScreen
+import com.example.spendai.viewmodels.TransactionViewModel
 
-class MainActivity : FlutterActivity()
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MaterialTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    SpendWiseApp()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun SpendWiseApp() {
+    var currentScreen by remember { mutableStateOf("landing") }
+    val viewModel: TransactionViewModel = viewModel()
+
+    when (currentScreen) {
+        "landing" -> LandingScreen(
+            onNavigateToDashboard = { currentScreen = "dashboard" },
+            viewModel = viewModel
+        )
+        "dashboard" -> DashboardScreen(
+            onBack = { currentScreen = "landing" },
+            viewModel = viewModel
+        )
+    }
+}

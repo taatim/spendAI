@@ -30,6 +30,7 @@ import com.example.spendai.services.OCRService
 import com.example.spendai.viewmodels.TransactionViewModel
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LandingScreen(
     onNavigateToDashboard: () -> Unit,
@@ -78,7 +79,21 @@ fun LandingScreen(
         }
     )
 
+    var showAssistant by remember { mutableStateOf(false) }
+
+    if (showAssistant) {
+        ModalBottomSheet(
+            onDismissRequest = { showAssistant = false },
+            containerColor = Color.White
+        ) {
+            AssistantPanel(onClose = { showAssistant = false })
+        }
+    }
+
     Scaffold(
+        floatingActionButton = {
+            AssistantFab(onPressed = { showAssistant = true })
+        },
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("Dashboard", fontWeight = FontWeight.Normal) },

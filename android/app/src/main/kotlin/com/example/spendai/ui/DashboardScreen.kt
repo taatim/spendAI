@@ -25,6 +25,7 @@ import com.example.spendai.viewmodels.TransactionViewModel
 import java.text.NumberFormat
 import java.util.Locale
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(
     onBack: () -> Unit,

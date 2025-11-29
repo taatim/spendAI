@@ -1,0 +1,12 @@
+build/
+.dart_tool/
+.idea/
+.gradle/
+android/.gradle/
+android/local.properties
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/
+ios/Runner.xcworkspace/xcuserdata/
+*.iml
+.DS_Store

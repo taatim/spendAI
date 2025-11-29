@@ -59,9 +59,13 @@ dependencies {
     
     // ML Kit
     implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
     
     // Coil for images
     implementation("io.coil-kt:coil-compose:2.5.0")
+    
+    // Icons
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.spendai.ui.DashboardScreen
 import com.example.spendai.ui.LandingScreen
+import com.example.spendai.ui.OverviewScreen
 import com.example.spendai.viewmodels.TransactionViewModel
 
 class MainActivity : ComponentActivity() {
@@ -31,16 +32,20 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun SpendWiseApp() {
-    var currentScreen by remember { mutableStateOf("landing") }
+    var currentScreen by remember { mutableStateOf("overview") }
     val viewModel: TransactionViewModel = viewModel()
 
     when (currentScreen) {
+        "overview" -> OverviewScreen(
+            onNavigateToTransactions = { currentScreen = "dashboard" },
+            viewModel = viewModel
+        )
         "landing" -> LandingScreen(
             onNavigateToDashboard = { currentScreen = "dashboard" },
             viewModel = viewModel
         )
         "dashboard" -> DashboardScreen(
-            onBack = { currentScreen = "landing" },
+            onBack = { currentScreen = "overview" },
             viewModel = viewModel
         )
     }

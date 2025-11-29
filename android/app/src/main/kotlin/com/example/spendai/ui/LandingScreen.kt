@@ -79,21 +79,7 @@ fun LandingScreen(
         }
     )
 
-    var showAssistant by remember { mutableStateOf(false) }
-
-    if (showAssistant) {
-        ModalBottomSheet(
-            onDismissRequest = { showAssistant = false },
-            containerColor = Color.White
-        ) {
-            AssistantPanel(onClose = { showAssistant = false })
-        }
-    }
-
     Scaffold(
-        floatingActionButton = {
-            AssistantFab(onPressed = { showAssistant = true })
-        },
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("Dashboard", fontWeight = FontWeight.Normal) },

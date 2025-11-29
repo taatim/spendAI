@@ -13,6 +13,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,7 +37,21 @@ fun DashboardScreen(
     val transactions by viewModel.transactions.collectAsState()
     val totalBalance = transactions.sumOf { it.amount }
 
+    var showAssistant by remember { mutableStateOf(false) }
+
+    if (showAssistant) {
+        ModalBottomSheet(
+            onDismissRequest = { showAssistant = false },
+            containerColor = Color.White
+        ) {
+            AssistantPanel(onClose = { showAssistant = false })
+        }
+    }
+
     Scaffold(
+        floatingActionButton = {
+            AssistantFab(onPressed = { showAssistant = true })
+        },
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("Dashboard") },
